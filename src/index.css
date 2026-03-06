@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;900&display=swap');
+
+:root {
+  /* === POLICES PREMIUM === */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-secondary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  --font-elegant: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+  --font-modern: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-grotesk: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-dm: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', monospace;
+  
+  /* === COULEURS PRINCIPALES === */
+  --color-primary: #D4AF37;     /* Or */
+  --color-secondary: #36454F;    /* Charcoal */
+  --color-tertiary: #800020;     /* Bordeaux */
+  
+  /* === COULEURS DE BASE === */
+  --color-background: #ffffff;
+  --color-text: #1a1a1a;
+  --color-accent: #D4AF37;
+  
+  /* === COULEURS DE SURFACE === */
+  --color-surface-light: #f8fafc;
+  --color-surface-dark: #0a0a0a;
+  --color-border: #e2e8f0;
+}
+
+/* === STYLES DE BASE === */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === TYPOGRAPHIE - UNIQUEMENT LES FONTS === */
+
+/* Style premium pour tous les titres */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Accent sur les mots importants */
+h1 strong, h2 strong, h3 strong {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  font-style: italic;
+}
+
+/* Style pour les paragraphes */
+p {
+  font-family: var(--font-primary);
+}
+
+/* Style pour les textes plus légers (sous-titres, métadonnées) */
+.text-light, .subtitle, .meta {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  color: var(--color-text);
+  opacity: 0.7;
+}
+
+/* Style pour les citations */
+blockquote, .quote {
+  font-family: var(--font-elegant);
+  font-style: italic;
+  color: var(--color-primary);
+}
+
+/* Style pour les boutons et éléments interactifs */
+button, .button, .btn {
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Style pour la navigation */
+nav, .nav-link {
+  font-family: var(--font-grotesk);
+  text-transform: uppercase;
+}
+
+/* Style pour les petits textes (copyright, légendes) */
+small, .small, .copyright, .caption, .legal {
+  font-family: var(--font-primary);
+}
+
+/* Style pour les textes avec accentuation */
+.text-accent, .accent-text {
+  font-family: var(--font-elegant);
+  color: var(--color-accent);
+  font-style: italic;
+}
+
+/* Style pour les cartes et composants */
+.card-title {
+  font-family: var(--font-modern);
+}
+
+.card-text {
+  font-family: var(--font-primary);
+}
+
+/* === STYLES SPÉCIFIQUES === */
+
+/* Titres de sections avec soulignement élégant */
+.section-title {
+  font-family: var(--font-display);
+}
+
+/* Liens de menu avec animation */
+.menu-link {
+  font-family: var(--font-grotesk);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.menu-link:hover {
+  color: var(--color-primary);
+}
+
+/* Logo text */
+.logo-text {
+  font-family: var(--font-display);
+  background: linear-gradient(135deg, #000 0%, #333 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Footer specific */
+.footer-title {
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-link {
+  font-family: var(--font-primary);
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: white;
+}
+
+/* Stats et chiffres */
+.stat-number {
+  font-family: var(--font-modern);
+  background: linear-gradient(135deg, var(--color-primary), #FFD700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+/* Badges premium */
+.premium-badge {
+  font-family: var(--font-grotesk);
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+/* === STYLES DE BASE === */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+/* Listes */
+ul, ol {
+  font-family: var(--font-primary);
+}
+
+/* Code */
+code, pre {
+  font-family: var(--font-mono);
+}
+
+/* Formulaires */
+input, textarea, select {
+  font-family: var(--font-primary);
+}
+
+label {
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+  color: var(--color-text);
+  opacity: 0.8;
+  display: block;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.8s ease-out forwards;
+}

@@ -1,5 +1,5 @@
-import React from 'react';
 import Header from './components/layout/Header';
+import Footer from './components/layout/Footer'; // Import du nouveau footer
 import { motion } from 'framer-motion';
 import { ShoppingBag, Sparkles, Truck, Shield, ArrowRight } from 'lucide-react';
 import './App.css';
@@ -243,47 +243,11 @@ function App() {
         </div>
       </section>
 
-      {/* Newsletter */}
-      <section className="py-20 bg-gray-100">
-        <div className="container mx-auto px-4 max-w-2xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 className="text-3xl font-bold mb-4">JOIN OUR NEWSLETTER</h3>
-            <p className="text-gray-600 mb-8">Soyez les premiers informés de nos nouvelles collections</p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <input 
-                type="email" 
-                placeholder="Votre adresse email" 
-                className="flex-1 px-4 py-3 border border-gray-300 focus:outline-none focus:border-black"
-              />
-              <button className="bg-black text-white px-8 py-3 font-medium hover:bg-gray-800 transition-colors">
-                S'INSCRIRE
-              </button>
-            </div>
-            <p className="text-xs text-gray-500 mt-4">
-              En vous inscrivant, vous acceptez notre <a href="/privacy" className="underline">Politique de confidentialité</a>
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      {/* Supprimer l'ancienne section Newsletter car elle est déjà dans le Footer */}
+      {/* La section Newsletter est maintenant intégrée dans le Footer */}
 
-      {/* Footer simplifié */}
-      <footer className="bg-white border-t border-gray-200 py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <span className="text-2xl font-black tracking-tighter mb-4 md:mb-0">HIGHWAY</span>
-            <div className="flex gap-8 text-sm text-gray-600">
-              <a href="/about" className="hover:text-black">À propos</a>
-              <a href="/contact" className="hover:text-black">Contact</a>
-              <a href="/privacy" className="hover:text-black">Privacy Policy</a>
-            </div>
-            <p className="text-sm text-gray-500 mt-4 md:mt-0">© 2024 HIGHWAY. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      {/* Nouveau Footer - Remplacer l'ancien footer simplifié */}
+      <Footer />
     </div>
   );
 }
