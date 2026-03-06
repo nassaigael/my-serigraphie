@@ -1,0 +1,68 @@
+export const theme = {
+  colors: {
+    primary: {
+      50: '#f0f9ff',
+      100: '#e0f2fe',
+      200: '#bae6fd',
+      300: '#7dd3fc',
+      400: '#38bdf8',
+      500: '#0ea5e9',
+      600: '#0284c7',
+      700: '#0369a1',
+      800: '#075985',
+      900: '#0c4a6e',
+      950: '#082f49',
+    },
+    secondary: {
+      50: '#faf5ff',
+      100: '#f3e8ff',
+      200: '#e9d5ff',
+      300: '#d8b4fe',
+      400: '#c084fc',
+      500: '#a855f7',
+      600: '#9333ea',
+      700: '#7e22ce',
+      800: '#6b21a8',
+      900: '#581c87',
+      950: '#3b0764',
+    },
+    accent: {
+      50: '#fff1f2',
+      100: '#ffe4e6',
+      200: '#fecdd3',
+      300: '#fda4af',
+      400: '#fb7185',
+      500: '#f43f5e',
+      600: '#e11d48',
+      700: '#be123c',
+      800: '#9f1239',
+      900: '#881337',
+      950: '#4c0519',
+    },
+    dark: {
+      100: '#1e1e2f',
+      200: '#171723',
+      300: '#0f0f17',
+      400: '#0a0a0f',
+      500: '#050508',
+    }
+  },
+  fonts: {
+    sans: ['Inter', 'system-ui', 'sans-serif'],
+    display: ['Montserrat', 'system-ui', 'sans-serif'],
+    mono: ['JetBrains Mono', 'monospace'],
+  },
+  animation: {
+    duration: {
+      fast: '0.2s',
+      normal: '0.4s',
+      slow: '0.6s',
+      verySlow: '0.8s',
+    },
+    easing: {
+      smooth: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      bounce: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+      sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
+    },
+  },
+};
