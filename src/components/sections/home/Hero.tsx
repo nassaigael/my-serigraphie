@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, type Variants } from 'framer-motion';
 import {  Palette, Award } from 'lucide-react';
 import { heroData } from '../../../data/hero';
