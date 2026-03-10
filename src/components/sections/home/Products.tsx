@@ -93,7 +93,7 @@ const Products = () => {
 
 
   return (
-    <section className="relative py-28 md:py-36 bg-white overflow-hidden">
+    <section className="relative pt-16 md:pt-24 pb-12 md:pb-12 bg-white overflow-hidden">
       {/* Éléments décoratifs de fond sophistiqués */}
       <div className="absolute inset-0">
         {/* Cercles lumineux dorés */}

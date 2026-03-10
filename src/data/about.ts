@@ -1,3 +1,4 @@
+import autre from "../assets/autre.png";
 export const aboutData = {
   badge: "NOTRE HISTOIRE",
   title: {
@@ -31,6 +32,6 @@ export const aboutData = {
   ],
   signature: "L'équipe HIGHWAY",
   signatureRole: "Fondateurs",
-  image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+  image: autre,
   imageCaption: "Notre atelier à Paris"
 };

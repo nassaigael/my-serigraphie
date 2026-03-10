@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { motion, type Variants } from 'framer-motion';
-import { Palette, Award, Sparkles } from 'lucide-react';
 import { heroData } from '../../../data/hero';
 
 const Hero = () => {
@@ -153,51 +152,6 @@ const Hero = () => {
 
             {/* Ligne décorative en bas */}
             <div className="absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-[#D4AF37]/50 to-transparent"></div>
-
-            {/* Éléments décoratifs animés */}
-            <motion.div
-                className="absolute top-20 right-20 text-[#D4AF37]/20 z-0"
-                animate={{
-                    rotate: 360,
-                }}
-                transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear",
-                }}
-            >
-                <Palette size={80} />
-            </motion.div>
-
-            <motion.div
-                className="absolute bottom-20 left-20 text-[#D4AF37]/10 z-0"
-                animate={{
-                    rotate: -360,
-                }}
-                transition={{
-                    duration: 30,
-                    repeat: Infinity,
-                    ease: "linear",
-                }}
-            >
-                <Award size={120} />
-            </motion.div>
-
-            {/* Deuxième élément décoratif pour équilibrer */}
-            <motion.div
-                className="absolute top-40 left-20 text-[#D4AF37]/5 z-0 hidden lg:block"
-                animate={{
-                    rotate: 360,
-                    scale: [1, 1.2, 1],
-                }}
-                transition={{
-                    duration: 15,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-            >
-                <Sparkles size={60} />
-            </motion.div>
         </section>
     );
 };
