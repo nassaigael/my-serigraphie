@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingBag, Sparkles, Truck, Shield, ArrowRight } from 'lucide-react';
 
@@ -8,11 +7,11 @@ import Footer from './components/layout/Footer';
 
 // Section components
 import Hero from './components/sections/home/Hero';
-import Categories from './components/sections/home/Categories';
 import About from './components/sections/home/About';
 
 // Styles
 import './App.css';
+import Products from './components/sections/home/Products';
 
 function App() {
   return (
@@ -24,7 +23,7 @@ function App() {
       <Hero />
 
       {/* Categories Section */}
-      <Categories />
+      <Products />
 
       {/* About Section */}
       <About />
