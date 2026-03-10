@@ -6,7 +6,7 @@ export const categoriesData = {
       id: 1,
       name: "HOODIES",
       description: "Sweatshirts premium avec impressions sérigraphiées",
-      image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
       link: "/gallery/hoodies",
       count: 24,
       color: "from-blue-900/20 to-purple-900/20"
@@ -24,7 +24,7 @@ export const categoriesData = {
       id: 3,
       name: "TOPS",
       description: "Pièces streetwear exclusives en édition limitée",
-      image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
       link: "/gallery/tops",
       count: 18,
       color: "from-emerald-900/20 to-teal-900/20"

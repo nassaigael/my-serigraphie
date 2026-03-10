@@ -1,5 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
-import { ArrowRight, Sparkles, Star, ChevronRight } from 'lucide-react';
+import { ArrowRight, Star, ChevronRight } from 'lucide-react';
 import { categoriesData } from '../../../data/categories';
 
 const Categories = () => {
@@ -80,17 +80,6 @@ const Categories = () => {
           className="text-center mb-20"
         >
           <motion.div variants={titleVariants} className="inline-block">
-            {/* Badge premium */}
-            <div className="flex items-center justify-center space-x-2 mb-4">
-              <div className="w-8 h-px bg-linear-to-r from-transparent via-gold/50 to-transparent"></div>
-              <Sparkles size={16} className="text-gold/70" />
-              <span className="text-xs uppercase tracking-[0.3em] text-gold/60 font-light">
-                Collection 2024
-              </span>
-              <Sparkles size={16} className="text-gold/70" />
-              <div className="w-8 h-px bg-linear-to-r from-transparent via-gold/50 to-transparent"></div>
-            </div>
-
             {/* Titre principal */}
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 mb-4">
               <span className="font-bold relative">

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
-import { 
-  Menu, 
-  X, 
+import {
+  Menu,
+  X,
   ChevronDown,
   Phone,
   Mail,
@@ -44,7 +44,7 @@ const Header = () => {
   // Animation variants
   const headerVariants: Variants = {
     initial: { y: -100 },
-    animate: { 
+    animate: {
       y: 0,
       transition: { type: "spring", stiffness: 100, damping: 20 }
     }
@@ -52,14 +52,14 @@ const Header = () => {
 
   const logoVariants: Variants = {
     initial: { opacity: 0, x: -20 },
-    animate: { 
+    animate: {
       opacity: 1, x: 0,
       transition: { duration: 0.6, ease: "easeOut" }
     }
   };
 
   const navItemVariants: Variants = {
-    hover: { 
+    hover: {
       y: -2,
       transition: { type: "spring", stiffness: 400, damping: 10 }
     }
@@ -67,7 +67,7 @@ const Header = () => {
 
   const dropdownVariants: Variants = {
     hidden: { opacity: 0, y: -10 },
-    visible: { 
+    visible: {
       opacity: 1, y: 0,
       transition: { duration: 0.3, staggerChildren: 0.05 }
     },
@@ -81,7 +81,7 @@ const Header = () => {
 
   const mobileMenuVariants: Variants = {
     hidden: { x: '100%' },
-    visible: { 
+    visible: {
       x: 0,
       transition: { type: 'spring', damping: 30, stiffness: 250 }
     },
@@ -89,24 +89,22 @@ const Header = () => {
   };
 
   // Classes conditionnelles pour mobile
-  const mobileMenuButtonClass = `lg:hidden p-2 rounded-lg transition-all duration-300 ${
-    scrolled || isOpen
-      ? 'text-gray-700 hover:text-black bg-gray-100 hover:bg-gray-200' 
-      : 'text-white hover:text-gray-200 bg-white/10 hover:bg-white/20 backdrop-blur-sm'
-  }`;
+  const mobileMenuButtonClass = `lg:hidden p-2 rounded-lg transition-all duration-300 ${scrolled || isOpen
+    ? 'text-gray-700 hover:text-black bg-gray-100 hover:bg-gray-200'
+    : 'text-white hover:text-gray-200 bg-white/10 hover:bg-white/20 backdrop-blur-sm'
+    }`;
 
   return (
     <>
       {/* Top Bar - Info de contact (cachée sur mobile) */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`hidden lg:block transition-all duration-300 ${
-          scrolled 
-            ? 'bg-black text-white py-1' 
-            : 'bg-black/80 backdrop-blur-sm text-white'
-        } text-sm`}
+        className={`hidden lg:block transition-all duration-300 ${scrolled
+          ? 'bg-black text-white py-1'
+          : 'bg-black/80 backdrop-blur-sm text-white'
+          } text-sm`}
       >
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex justify-between items-center h-8">
@@ -138,11 +136,10 @@ const Header = () => {
         variants={headerVariants}
         initial="initial"
         animate="animate"
-        className={`sticky top-0 left-0 right-0 z-50 w-full transition-all duration-500 ${
-          scrolled 
-            ? 'bg-white/95 backdrop-blur-md shadow-lg py-2' 
-            : 'bg-transparent py-3 md:py-5'
-        }`}
+        className={`sticky top-0 left-0 right-0 z-50 w-full transition-all duration-500 ${scrolled
+          ? 'bg-white/95 backdrop-blur-md shadow-lg py-2'
+          : 'bg-transparent py-3 md:py-5'
+          }`}
         style={{ top: scrolled ? 0 : (typeof window !== 'undefined' && window.innerWidth >= 1024 ? 32 : 0) }}
       >
         <div className="container mx-auto px-4 md:px-6">
@@ -155,15 +152,13 @@ const Header = () => {
               animate="animate"
               className="relative z-10 flex items-center space-x-2"
             >
-              <Palette 
-                size={24} 
-                className={`transition-colors duration-300 ${
-                  scrolled || isOpen ? 'text-black' : 'text-black'
-                }`} 
+              <Palette
+                size={24}
+                className={`transition-colors duration-300 ${scrolled || isOpen ? 'text-black' : 'text-black'
+                  }`}
               />
-              <span className={`text-xl md:text-3xl font-black tracking-tighter transition-colors duration-300 ${
-                scrolled || isOpen ? 'text-black' : 'text-black'
-              }`}>
+              <span className={`text-xl md:text-3xl font-black tracking-tighter transition-colors duration-300 ${scrolled || isOpen ? 'text-black' : 'text-black'
+                }`}>
                 HIGHWAY
               </span>
             </motion.a>
@@ -182,19 +177,17 @@ const Header = () => {
                       href={item.href}
                       variants={navItemVariants}
                       whileHover="hover"
-                      className={`flex items-center space-x-1 px-4 py-2 font-medium rounded-lg transition-colors ${
-                        scrolled 
-                          ? 'text-gray-700 hover:text-black' 
-                          : 'text-black/90 hover:text-black'
-                      }`}
+                      className={`flex items-center space-x-1 px-4 py-2 font-medium rounded-lg transition-colors ${scrolled
+                        ? 'text-gray-700 hover:text-black'
+                        : 'text-black/90 hover:text-black'
+                        }`}
                     >
                       <span>{item.name}</span>
                       {item.hasDropdown && (
-                        <ChevronDown 
-                          size={14} 
-                          className={`transition-transform duration-300 ${
-                            activeDropdown === item.name ? 'rotate-180' : ''
-                          }`}
+                        <ChevronDown
+                          size={14}
+                          className={`transition-transform duration-300 ${activeDropdown === item.name ? 'rotate-180' : ''
+                            }`}
                         />
                       )}
                     </motion.a>
@@ -227,11 +220,11 @@ const Header = () => {
                                 </motion.a>
                               ))}
                             </div>
-                            
+
                             {/* CTA dans le dropdown */}
                             <div className="bg-gray-50 p-4 border-t border-gray-100">
-                              <a 
-                                href="/contact" 
+                              <a
+                                href="/contact"
                                 className="block text-center text-sm font-medium text-black hover:underline"
                               >
                                 Demander un devis →
@@ -252,11 +245,10 @@ const Header = () => {
                 href="/contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-6 py-2.5 font-medium rounded-lg transition-all duration-300 shadow-md hover:shadow-lg ${
-                  scrolled 
-                    ? 'bg-black text-white hover:bg-gray-800' 
-                    : 'bg-black text-white hover:bg-gray-800'
-                }`}
+                className={`px-6 py-2.5 font-medium rounded-lg transition-all duration-300 shadow-md hover:shadow-lg ${scrolled
+                  ? 'bg-black text-white  hover:bg-gray-800'
+                  : 'bg-black  text-white hover:bg-gray-800'
+                  }`}
               >
                 Devis gratuit
               </motion.a>
@@ -267,15 +259,14 @@ const Header = () => {
               {/* CTA Mobile simplifié */}
               <a
                 href="/contact"
-                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-300 ${
-                  scrolled || isOpen
-                    ? 'bg-black text-white'
-                    : 'bg-black text-white'
-                }`}
+                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-300 ${scrolled || isOpen
+                  ? 'bg-black text-white'
+                  : 'bg-black text-white'
+                  }`}
               >
                 Devis
               </a>
-              
+
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={mobileMenuButtonClass}
@@ -300,7 +291,7 @@ const Header = () => {
               onClick={() => setIsOpen(false)}
               className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 lg:hidden"
             />
-            
+
             {/* Menu Panel */}
             <motion.div
               variants={mobileMenuVariants}
@@ -364,17 +355,17 @@ const Header = () => {
 
                   {/* Social links */}
                   <div className="flex space-x-3 mb-4">
-                    <a 
-                      href="https://instagram.com" 
-                      target="_blank" 
+                    <a
+                      href="https://instagram.com"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 bg-white rounded-lg hover:bg-gray-100 transition-colors shadow-sm"
                     >
                       <Instagram size={18} />
                     </a>
-                    <a 
-                      href="https://facebook.com" 
-                      target="_blank" 
+                    <a
+                      href="https://facebook.com"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 bg-white rounded-lg hover:bg-gray-100 transition-colors shadow-sm"
                     >
@@ -412,8 +403,8 @@ const MobileDropdown = ({ item, onLinkClick }: MobileDropdownProps) => {
 
   const dropdownVariants: Variants = {
     hidden: { height: 0, opacity: 0 },
-    visible: { 
-      height: 'auto', 
+    visible: {
+      height: 'auto',
       opacity: 1,
       transition: { duration: 0.3 }
     }
@@ -427,8 +418,8 @@ const MobileDropdown = ({ item, onLinkClick }: MobileDropdownProps) => {
         aria-expanded={isOpen}
       >
         <span>{item.name}</span>
-        <ChevronDown 
-          size={16} 
+        <ChevronDown
+          size={16}
           className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
         />
       </button>

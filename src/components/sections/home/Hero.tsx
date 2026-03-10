@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, type Variants } from 'framer-motion';
-import {  Palette, Award } from 'lucide-react';
+import { Palette, Award, Sparkles } from 'lucide-react';
 import { heroData } from '../../../data/hero';
 
 const Hero = () => {
@@ -52,7 +52,6 @@ const Hero = () => {
         },
     };
 
-
     return (
         <section className="relative h-screen w-full overflow-hidden bg-black">
             {/* Image de fond avec overlay et animation */}
@@ -77,7 +76,7 @@ const Hero = () => {
 
                 {/* Éléments décoratifs */}
                 <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gold/5 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl"></div>
             </motion.div>
 
             {/* Contenu principal */}
@@ -94,7 +93,7 @@ const Hero = () => {
                     className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-4"
                 >
                     <span className="block">{heroData.title.line1}</span>
-                    <span className="block text-gold">{heroData.title.line2}</span>
+                    <span className="block text-[#D4AF37]">{heroData.title.line2}</span>
                 </motion.h1>
 
                 {/* Sous-titre */}
@@ -120,15 +119,15 @@ const Hero = () => {
                 >
                     <a
                         href={heroData.cta.primary.link}
-                        className="group relative px-8 py-4 bg-gold text-black font-medium rounded-none overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-gold/30"
+                        className="group relative px-8 py-4 bg-[#D4AF37] text-black font-medium rounded-none overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-[#D4AF37]/30"
                     >
-                        <span className="relative z-10">{heroData.cta.primary.text}</span>
+                        <span className="relative z-10 font-secondary tracking-wider">{heroData.cta.primary.text}</span>
                         <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
                     </a>
 
                     <a
                         href={heroData.cta.secondary.link}
-                        className="px-8 py-4 border-2 border-white text-white font-medium rounded-none hover:bg-white hover:text-black transition-all duration-300"
+                        className="px-8 py-4 border-2 border-white text-white font-medium rounded-none hover:bg-white hover:text-black transition-all duration-300 font-secondary tracking-wider"
                     >
                         {heroData.cta.secondary.text}
                     </a>
@@ -141,10 +140,10 @@ const Hero = () => {
                 >
                     {heroData.stats.map((stat, index) => (
                         <div key={index} className="text-center">
-                            <div className="text-2xl md:text-3xl font-bold text-gold mb-1">
+                            <div className="text-2xl md:text-3xl font-bold text-[#D4AF37] mb-1 font-modern">
                                 {stat.value}
                             </div>
-                            <div className="text-xs md:text-sm uppercase tracking-wider text-white/60">
+                            <div className="text-xs md:text-sm uppercase tracking-wider text-white/60 font-secondary">
                                 {stat.label}
                             </div>
                         </div>
@@ -152,12 +151,12 @@ const Hero = () => {
                 </motion.div>
             </motion.div>
 
+            {/* Ligne décorative en bas */}
+            <div className="absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-[#D4AF37]/50 to-transparent"></div>
 
-            {/* Éléments décoratifs supplémentaires */}
-            <div className="absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-gold/50 to-transparent"></div>
-
+            {/* Éléments décoratifs animés */}
             <motion.div
-                className="absolute top-20 right-20 text-gold/20"
+                className="absolute top-20 right-20 text-[#D4AF37]/20 z-0"
                 animate={{
                     rotate: 360,
                 }}
@@ -171,7 +170,7 @@ const Hero = () => {
             </motion.div>
 
             <motion.div
-                className="absolute bottom-20 left-20 text-gold/10"
+                className="absolute bottom-20 left-20 text-[#D4AF37]/10 z-0"
                 animate={{
                     rotate: -360,
                 }}
@@ -182,6 +181,22 @@ const Hero = () => {
                 }}
             >
                 <Award size={120} />
+            </motion.div>
+
+            {/* Deuxième élément décoratif pour équilibrer */}
+            <motion.div
+                className="absolute top-40 left-20 text-[#D4AF37]/5 z-0 hidden lg:block"
+                animate={{
+                    rotate: 360,
+                    scale: [1, 1.2, 1],
+                }}
+                transition={{
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
+            >
+                <Sparkles size={60} />
             </motion.div>
         </section>
     );
