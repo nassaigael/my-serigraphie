@@ -12,6 +12,7 @@ import About from './components/sections/home/About';
 // Styles
 import './App.css';
 import Products from './components/sections/home/Products';
+import Contact from './components/sections/home/Contact';
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
 
       {/* About Section */}
       <About />
+
+      {/* Contact section */}
+      <Contact />
 
       {/* Promo Banner */}
       <section className="py-16 bg-black text-white">
@@ -54,7 +58,7 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Feature 1 */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -69,7 +73,7 @@ function App() {
             </motion.div>
 
             {/* Feature 2 */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -84,7 +88,7 @@ function App() {
             </motion.div>
 
             {/* Feature 3 */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -99,7 +103,7 @@ function App() {
             </motion.div>
 
             {/* Feature 4 */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}

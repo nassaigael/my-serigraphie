@@ -1,4 +1,4 @@
-import autre from "../assets/autre.png";
+import autre from "../assets/react.svg";
 export const aboutData = {
   badge: "NOTRE HISTOIRE",
   title: {
