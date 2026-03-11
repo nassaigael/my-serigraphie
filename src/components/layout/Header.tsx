@@ -16,14 +16,25 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState('hero');
 
-  // Gestion du scroll pour changer le style
+  // Gestion du scroll pour changer le style et détecter la section active
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 50;
       if (isScrolled !== scrolled) {
         setScrolled(isScrolled);
       }
+
+      // Détecter la section active pour le surlignage du menu
+      const sections = document.querySelectorAll('section[id]');
+      sections.forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const sectionHeight = section.clientHeight;
+        if (sectionTop <= 150 && sectionTop + sectionHeight > 0) {
+          setActiveSection(section.id);
+        }
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -40,6 +51,29 @@ const Header = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Fonction de smooth scroll vers les sections
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    
+    // Fermer le menu mobile si ouvert
+    setIsOpen(false);
+    
+    // Extraire l'ID de la section (enlever le #)
+    const sectionId = href.replace('#', '');
+    const element = document.getElementById(sectionId);
+    
+    if (element) {
+      const headerHeight = scrolled ? 80 : 120; // Hauteur du header selon l'état du scroll
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - headerHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   // Animation variants
   const headerVariants: Variants = {
@@ -150,6 +184,7 @@ const Header = () => {
               variants={logoVariants}
               initial="initial"
               animate="animate"
+              onClick={(e) => scrollToSection(e, '#hero')}
               className="relative z-10 flex items-center space-x-2"
             >
               <Palette
@@ -177,10 +212,14 @@ const Header = () => {
                       href={item.href}
                       variants={navItemVariants}
                       whileHover="hover"
-                      className={`flex items-center space-x-1 px-4 py-2 font-medium rounded-lg transition-colors ${scrolled
-                        ? 'text-gray-700 hover:text-black'
-                        : 'text-black/90 hover:text-black'
-                        }`}
+                      onClick={(e) => scrollToSection(e, item.href)}
+                      className={`flex items-center space-x-1 px-4 py-2 font-medium  transition-colors ${
+                        activeSection === item.href.replace('#', '')
+                          ? 'text-[#D4AF37] border-b-2 border-[#D4AF37]'
+                          : scrolled
+                            ? 'text-gray-700 hover:text-black'
+                            : 'text-black/90 hover:text-black'
+                      }`}
                     >
                       <span>{item.name}</span>
                       {item.hasDropdown && (
@@ -209,6 +248,7 @@ const Header = () => {
                                   key={dropdownItem.name}
                                   href={dropdownItem.href}
                                   variants={dropdownItemVariants}
+                                  onClick={(e) => scrollToSection(e, dropdownItem.href)}
                                   className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors"
                                 >
                                   <div className="font-medium">{dropdownItem.name}</div>
@@ -225,6 +265,7 @@ const Header = () => {
                             <div className="bg-gray-50 p-4 border-t border-gray-100">
                               <a
                                 href="/contact"
+                                onClick={(e) => scrollToSection(e, '#contact')}
                                 className="block text-center text-sm font-medium text-black hover:underline"
                               >
                                 Demander un devis →
@@ -242,12 +283,13 @@ const Header = () => {
             {/* CTA Button Desktop */}
             <div className="hidden lg:block">
               <motion.a
-                href="/contact"
+                href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={(e) => scrollToSection(e, '#contact')}
                 className={`px-6 py-2.5 font-medium rounded-lg transition-all duration-300 shadow-md hover:shadow-lg ${scrolled
-                  ? 'bg-black text-white  hover:bg-gray-800'
-                  : 'bg-black  text-white hover:bg-gray-800'
+                  ? 'bg-black text-white hover:bg-gray-800'
+                  : 'bg-black text-white hover:bg-gray-800'
                   }`}
               >
                 Devis gratuit
@@ -258,7 +300,11 @@ const Header = () => {
             <div className="lg:hidden flex items-center space-x-2">
               {/* CTA Mobile simplifié */}
               <a
-                href="/contact"
+                href="#contact"
+                onClick={(e) => {
+                  scrollToSection(e, '#contact');
+                  setIsOpen(false);
+                }}
                 className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-300 ${scrolled || isOpen
                   ? 'bg-black text-white'
                   : 'bg-black text-white'
@@ -272,7 +318,7 @@ const Header = () => {
                 className={mobileMenuButtonClass}
                 aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
               >
-                {isOpen ? <X size={20} className='bg-black' /> : <Menu size={20} className=' text-black' />}
+                {isOpen ? <X size={20} /> : <Menu size={20} className='text-black' />}
               </button>
             </div>
           </div>
@@ -324,12 +370,25 @@ const Header = () => {
                     {navigationItems.map((item) => (
                       <li key={item.name}>
                         {item.hasDropdown && item.dropdownItems ? (
-                          <MobileDropdown item={item} onLinkClick={() => setIsOpen(false)} />
+                          <MobileDropdown 
+                            item={item} 
+                            onLinkClick={(e, href) => {
+                              scrollToSection(e, href);
+                              setIsOpen(false);
+                            }}
+                          />
                         ) : (
                           <a
                             href={item.href}
-                            onClick={() => setIsOpen(false)}
-                            className="block px-4 py-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium text-base"
+                            onClick={(e) => {
+                              scrollToSection(e, item.href);
+                              setIsOpen(false);
+                            }}
+                            className={`block px-4 py-3 rounded-lg transition-colors font-medium text-base ${
+                              activeSection === item.href.replace('#', '')
+                                ? 'text-[#D4AF37] bg-[#D4AF37]/5 border-l-2 border-[#D4AF37]'
+                                : 'text-gray-900 hover:bg-gray-50'
+                            }`}
                           >
                             {item.name}
                           </a>
@@ -375,8 +434,11 @@ const Header = () => {
 
                   {/* CTA mobile */}
                   <a
-                    href="/contact"
-                    onClick={() => setIsOpen(false)}
+                    href="#contact"
+                    onClick={(e) => {
+                      scrollToSection(e, '#contact');
+                      setIsOpen(false);
+                    }}
                     className="block w-full py-3 bg-black text-white text-center font-medium rounded-lg hover:bg-gray-800 transition-colors shadow-md"
                   >
                     Demander un devis
@@ -394,7 +456,7 @@ const Header = () => {
 // Interface pour le composant MobileDropdown
 interface MobileDropdownProps {
   item: NavItem;
-  onLinkClick: () => void;
+  onLinkClick: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
 }
 
 // Composant pour le dropdown mobile
@@ -437,7 +499,7 @@ const MobileDropdown = ({ item, onLinkClick }: MobileDropdownProps) => {
                 <a
                   key={dropdownItem.name}
                   href={dropdownItem.href}
-                  onClick={onLinkClick}
+                  onClick={(e) => onLinkClick(e, dropdownItem.href)}
                   className="block px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
                 >
                   {dropdownItem.name}

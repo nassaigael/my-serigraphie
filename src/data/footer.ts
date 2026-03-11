@@ -6,11 +6,11 @@ export const footerData = {
   },
   
   quickLinks: [
-    { name: 'Accueil', href: '/' },
-    { name: 'À propos', href: '/about' },
+    { name: 'Accueil', href: '#hero' },
+    { name: 'À propos', href: '#about' },
     { name: 'Réalisations', href: '/gallery' },
     { name: 'Services', href: '/services' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Contact', href: '#contact' },
   ],
   
   services: [

@@ -93,7 +93,7 @@ const Products = () => {
 
 
   return (
-    <section className="relative pt-16 md:pt-24 pb-12 md:pb-12 bg-white overflow-hidden">
+    <section id="products" className="relative pt-16 md:pt-24 pb-12 md:pb-12 bg-white overflow-hidden">
       {/* Éléments décoratifs de fond sophistiqués */}
       <div className="absolute inset-0">
         {/* Cercles lumineux dorés */}
@@ -206,7 +206,7 @@ const Products = () => {
                     {/* Overlay premium avec gradient sophistiqué */}
                     <motion.div
                       variants={overlayVariants}
-                      className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"
+                      className="absolute inset-0 bg-linear-to-t from-gray-400/10 via-gray-400/10 to-transparent"
                     />
 
                     {/* Badge du produit avec animation - avec icône spécifique */}

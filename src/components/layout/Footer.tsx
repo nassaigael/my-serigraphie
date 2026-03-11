@@ -132,10 +132,10 @@ const Footer = () => {
           >
             <div className="relative">
               {/* Effet de glow */}
-              <div className="absolute inset-0 bg-linear-to-r from-white/30 to-purple-500/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-white/30 to-purple-500/30  rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               
               {/* Cercle principal */}
-              <div className="relative w-14 h-14 bg-linear-to-br from-white to-gray-100 rounded-full shadow-2xl flex items-center justify-center border border-white/20 group-hover:border-white/40 transition-all">
+              <div className="relative w-14 h-14 bg-linear-to-br from-white to-gray-100 rounded-full shadow-2xl flex items-center justify-center border border-black/50 group-hover:border-white/40 transition-all">
                 <ArrowUp size={24} className="text-black group-hover:-translate-y-1 transition-transform" />
               </div>
               
@@ -147,7 +147,7 @@ const Footer = () => {
         )}
       </AnimatePresence>
 
-      {/* Arrière-plan ultra-premium */}
+      {/* Arrière-plan*/}
       <div className="absolute inset-0">
         {/* Gradient de base */}
         <div className="absolute inset-0 bg-linear-to-br from-zinc-900 via-black to-zinc-900"></div>
@@ -174,7 +174,7 @@ const Footer = () => {
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        {/* En-tête élégant avec titre */}
+        {/* En-tête avec titre */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -206,7 +206,7 @@ const Footer = () => {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-16"
         >
-          {/* Company Info - Version luxe */}
+          {/* Company Info */}
           <motion.div variants={itemVariants} className="lg:col-span-4 text-center lg:text-left">
             <div className="inline-flex items-center justify-center lg:justify-start space-x-3 mb-6 group">
               <div className="relative">
@@ -256,7 +256,7 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Navigation Links - Design épuré */}
+          {/* Navigation Links */}
           <motion.div variants={itemVariants} className="lg:col-span-2 text-center lg:text-left">
             <h3 className="text-lg font-light mb-6 tracking-wider">
               <span className="relative inline-block">
@@ -343,7 +343,7 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          {/* Contact - Design luxe */}
+          {/* Contact */}
           <motion.div variants={itemVariants} className="lg:col-span-2 text-center lg:text-left">
             <h3 className="text-lg font-light mb-6 tracking-wider">
               <span className="relative inline-block">
@@ -388,7 +388,7 @@ const Footer = () => {
               </motion.div>
             </div>
 
-            {/* Social Links - Design raffiné */}
+            {/* Social Links */}
             <div>
               <h4 className="text-xs uppercase tracking-[0.2em] text-white/30 mb-4">Réseaux</h4>
               <div className="flex flex-wrap justify-center lg:justify-start gap-2">
@@ -416,7 +416,7 @@ const Footer = () => {
           </motion.div>
         </motion.div>
 
-        {/* Newsletter - Design épuré */}
+        {/* Newsletter */}
         <motion.div 
           variants={itemVariants}
           initial="hidden"
@@ -452,7 +452,7 @@ const Footer = () => {
           </div>
         </motion.div>
 
-        {/* Footer bottom - Élégant */}
+        {/* Footer bottom */}
         <motion.div 
           variants={itemVariants}
           initial="hidden"

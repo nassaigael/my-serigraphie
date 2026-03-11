@@ -52,7 +52,7 @@ const Hero = () => {
     };
 
     return (
-        <section className="relative h-screen w-full overflow-hidden bg-black">
+        <section id="hero" className="relative h-screen w-full overflow-hidden bg-black">
             {/* Image de fond avec overlay et animation */}
             <motion.div
                 variants={backgroundVariants}

@@ -1,4 +1,4 @@
-import autre from "../assets/react.svg";
+import tee_shirt from "../assets/tee-shirt.png";
 export const aboutData = {
   badge: "NOTRE HISTOIRE",
   title: {
@@ -32,6 +32,6 @@ export const aboutData = {
   ],
   signature: "L'équipe HIGHWAY",
   signatureRole: "Fondateurs",
-  image: autre,
+  image: tee_shirt,
   imageCaption: "Notre atelier à Paris"
 };

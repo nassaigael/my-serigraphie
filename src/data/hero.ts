@@ -1,7 +1,7 @@
 export const heroData = {
   title: {
-    line1: "HIT THE ROAD",
-    line2: "IN STYLE"
+    line1: "PRENEZ LA ROUTE",
+    line2: "AVEC STYLE"
   },
   subtitle: "Sérigraphie d'exception sur t-shirts",
   description: "Depuis 2010, nous créons des t-shirts uniques avec des impressions de qualité premium. Chaque pièce est réalisée avec passion et savoir-faire artisanal.",

@@ -14,65 +14,65 @@ export interface DropdownItem {
 export const navigationItems: NavItem[] = [
   {
     name: 'Accueil',
-    href: '/',
+    href: '#hero',
   },
   {
     name: 'À propos',
-    href: '/about',
+    href: '#about',
   },
   {
     name: 'Produits',
-    href: '/products',
+    href: '#products',
     hasDropdown: true,
     dropdownItems: [
       {
         name: 'T-shirts',
-        href: '/products/tshirts',
+        href: '#tshirts',
         description: 'Homme, Femme, Enfant',
       },
       {
         name: 'Sweats & Hoodies',
-        href: '/products/sweats',
+        href: '#sweats',
         description: 'Collections streetwear',
       },
       {
         name: 'Totes bags',
-        href: '/products/bags',
+        href: '#bags',
         description: 'Sacs personnalisés',
       },
       {
         name: 'Casquettes',
-        href: '/products/caps',
+        href: '#caps',
         description: 'Accessoires',
       },
     ],
   },
   {
     name: 'Catégories',
-    href: '/categories',
+    href: '#categories',
     hasDropdown: true,
     dropdownItems: [
       {
         name: 'Nouveautés',
-        href: '/categories/new',
+        href: '#new',
       },
       {
         name: 'Meilleures ventes',
-        href: '/categories/bestsellers',
+        href: '#bestsellers',
       },
       {
         name: 'Collections',
-        href: '/categories/collections',
+        href: '#collections',
       },
       {
         name: 'Personnalisation',
-        href: '/categories/custom',
+        href: '#custom',
       },
     ],
   },
   {
     name: 'Contact',
-    href: '/contact',
+    href: '#contact',
   },
 ];
 

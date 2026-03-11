@@ -15,7 +15,6 @@ const Contact = () => {
     const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // États pour les formulaires
     const [contactForm, setContactForm] = useState({
         name: '',
         email: '',
@@ -34,7 +33,6 @@ const Contact = () => {
         description: ''
     });
 
-    // Animation variants
     const sectionVariants: Variants = {
         hidden: { opacity: 0 },
         visible: {
@@ -101,20 +99,17 @@ const Contact = () => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulation d'envoi
         setTimeout(() => {
             setIsSubmitting(false);
             setFormStatus('success');
-            resetForms(); // Réinitialisation des formulaires
+            resetForms();
 
-            // Reset du statut après 5 secondes
             setTimeout(() => {
                 setFormStatus('idle');
-            }, 5000);
+            }, 5500);
         }, 1500);
     };
 
-    // Animation variants pour les messages
     const messageVariants: Variants = {
         hidden: { opacity: 0, y: -20, scale: 0.95 },
         visible: { 
@@ -154,7 +149,7 @@ const Contact = () => {
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-                {/* En-tête - Centré */}
+                {/* En-tête */}
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -185,7 +180,7 @@ const Contact = () => {
                     </motion.div>
                 </motion.div>
 
-                {/* Toggle Switch - Centré */}
+                {/* Toggle Switch  */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -236,7 +231,7 @@ const Contact = () => {
                     </div>
                 </motion.div>
 
-                {/* Formulaire principal - Centré dans la page */}
+                {/* Formulaire principal*/}
                 <motion.div
                     key={mode}
                     variants={formVariants}

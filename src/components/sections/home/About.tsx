@@ -78,7 +78,7 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="relative pb-28 md:pb-36 bg-white overflow-hidden">
+    <section id="about" className="relative py-28 md:py-36 bg-white overflow-hidden">
       {/* Éléments décoratifs de fond sophistiqués */}
       <div className="absolute inset-0">
         {/* Cercles lumineux */}
@@ -89,7 +89,7 @@ const About = () => {
         <div className="absolute top-40 left-0 w-full h-px bg-linear-to-r from-transparent via-[#D4AF37]/20 to-transparent"></div>
         <div className="absolute bottom-40 left-0 w-full h-px bg-linear-to-r from-transparent via-[#D4AF37]/20 to-transparent"></div>
 
-        {/* Motif de points élégant - avec la couleur or en hex */}
+        {/* Motif de points élégant */}
         <div className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage: 'radial-gradient(circle at 1px 1px, #D4AF37 1px, transparent 0)',
@@ -205,7 +205,7 @@ const About = () => {
             <div className="absolute -top-4 -right-4 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 border-2 border-[#D4AF37]/20 rounded-2xl lg:-top-6 lg:-right-6 lg:w-48 lg:h-48"></div>
             <div className="absolute -bottom-4 -left-4 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 border-2 border-[#D4AF37]/20 rounded-2xl lg:-bottom-6 lg:-left-6 lg:w-48 lg:h-48"></div>
 
-            {/* Image principale - Avec background-image */}
+            {/* Image principale */}
             <div
               className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl lg:shadow-3xl transform group bg-cover bg-center"
               style={{ backgroundImage: `url(${aboutData.image})` }}
@@ -213,11 +213,11 @@ const About = () => {
               <div className="aspect-4/5 sm:aspect-3/4 md:aspect-video lg:aspect-4/5 w-full h-full">
               </div>
               {/* Overlay artistique */}
-              <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-black/20"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-gray-400/20 via-transparent to-gray-400/20"></div>
               {/* Motif doré superposé */}
               <div className="absolute inset-0 opacity-20 mix-blend-overlay"
                 style={{
-                  backgroundImage: 'repeating-linear-gradient(45deg, #D4AF37 0px, #D4AF37 2px, transparent 2px, transparent 10px)',
+                  backgroundImage: 'repeating-linear-gradient(45deg, #D4AF37 0px, #D4AF37 2px, transparent 2px, transparent 5px)',
                 }}
               />
 

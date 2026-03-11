@@ -23,11 +23,13 @@ function App() {
       {/* Hero Section */}
       <Hero />
 
+            {/* About Section */}
+      <About />
+
       {/* Categories Section */}
       <Products />
 
-      {/* About Section */}
-      <About />
+
 
       {/* Contact section */}
       <Contact />
