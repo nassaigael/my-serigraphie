@@ -1,4 +1,5 @@
-import { motion, type Variants } from 'framer-motion';
+import { useState } from 'react';
+import { motion, type Variants, AnimatePresence } from 'framer-motion';
 import { 
   ArrowRight, 
   Star, 
@@ -10,12 +11,21 @@ import {
   Share2,
   Clock,
   Shield,
-  Truck
+  Truck,
+  X,
 } from 'lucide-react';
 import { productsData } from '../../../data/products';
+import { productsDetailData } from '../../../data/productDetail';
 import { Link } from 'react-router-dom';
+import ProductDetail from '../../../pages/ProductDetail';
 
 const Products = () => {
+  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string>('');
+  const [selectedColor, setSelectedColor] = useState<string>('');
+  const [quantity, setQuantity] = useState(1);
+  const [showSizeGuide, setShowSizeGuide] = useState(false);
+
   const productIcons: { [key: string]: React.ElementType } = {
     'HOODIES': Shirt,
     'T-SHIRTS': Shirt,
@@ -24,7 +34,6 @@ const Products = () => {
     'default': Sparkles
   };
 
-  // Fonction pour obtenir l'ID du produit
   const getProductId = (productName: string): string => {
     switch(productName) {
       case 'T-SHIRTS':
@@ -40,7 +49,7 @@ const Products = () => {
     }
   };
 
-  // Animation variants améliorés
+  // Animation variants
   const sectionVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -121,21 +130,46 @@ const Products = () => {
     },
   };
 
+  const modalVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { 
+        duration: 0.4,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    },
+    exit: { 
+      opacity: 0, 
+      scale: 0.95,
+      transition: { duration: 0.3 }
+    }
+  };
+
+  const handleDiscoverClick = (productId: string) => {
+    if (selectedProduct === productId) {
+      setSelectedProduct(null);
+    } else {
+      setSelectedProduct(productId);
+      setSelectedSize('');
+      setSelectedColor('');
+      setQuantity(1);
+    }
+  };
+
   return (
     <section id="products" className="relative py-8 md:py-8 bg-white overflow-hidden">
-      {/* Éléments décoratifs de fond premium */}
+      {/* Éléments décoratifs de fond */}
       <div className="absolute inset-0">
-        {/* Grands cercles lumineux */}
         <div className="absolute top-0 -left-40 w-125 h-125 bg-linear-to-br from-[#D4AF37]/5 via-transparent to-transparent rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 -right-40 w-150 h-150 bg-linear-to-tl from-[#D4AF37]/5 via-transparent to-transparent rounded-full blur-3xl"></div>
         
-        {/* Lignes de lumière croisées */}
         <div className="absolute top-1/3 left-0 w-full h-px bg-linear-to-r from-transparent via-[#D4AF37]/10 to-transparent"></div>
         <div className="absolute bottom-1/3 left-0 w-full h-px bg-linear-to-r from-transparent via-[#D4AF37]/10 to-transparent"></div>
         <div className="absolute top-0 left-1/3 w-px h-full bg-linear-to-b from-transparent via-[#D4AF37]/10 to-transparent"></div>
         <div className="absolute top-0 right-1/3 w-px h-full bg-linear-to-b from-transparent via-[#D4AF37]/10 to-transparent"></div>
         
-        {/* Motif de points sophistiqué */}
         <div className="absolute inset-0 opacity-[0.02]" 
           style={{
             backgroundImage: 'radial-gradient(circle at 1px 1px, #D4AF37 1px, transparent 0)',
@@ -143,7 +177,6 @@ const Products = () => {
           }}
         />
         
-        {/* Motif de lignes fines */}
         <div className="absolute inset-0 opacity-[0.01]"
           style={{
             backgroundImage: 'repeating-linear-gradient(45deg, #D4AF37 0px, #D4AF37 1px, transparent 1px, transparent 40px)',
@@ -161,8 +194,6 @@ const Products = () => {
           className="text-center mb-16 md:mb-20"
         >
           <motion.div variants={titleVariants} className="inline-block">
-
-            {/* Titre principal avec effet de profondeur */}
             <h2 className="relative">
               <span className="text-6xl md:text-7xl lg:text-8xl font-light text-gray-900 block leading-[1.1]">
                 <span className="font-black bg-linear-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent">
@@ -177,7 +208,6 @@ const Products = () => {
               />
             </h2>
 
-            {/* Sous-titre élégant */}
             <motion.p 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -202,21 +232,18 @@ const Products = () => {
             const productId = getProductId(product.name);
             
             return (
-              <motion.div
-                key={product.id}
-                variants={cardVariants}
-                custom={index}
-                whileHover="hover"
-                className="group"
-              >
-                <Link
-                  to={`/product/${productId}`}
-                  className="block"
+              <div key={product.id} className="relative">
+                <motion.div
+                  variants={cardVariants}
+                  custom={index}
+                  whileHover="hover"
+                  className="group cursor-pointer"
+                  onClick={() => handleDiscoverClick(productId)}
                 >
-                  {/* Carte produit avec design */}
+                  {/* Carte produit */}
                   <div className="relative bg-white rounded-3xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-500">
                     
-                    {/* Image container avec overlay */}
+                    {/* Image container */}
                     <div className="relative overflow-hidden">
                       <motion.div
                         variants={imageVariants}
@@ -235,9 +262,8 @@ const Products = () => {
                         className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent"
                       />
 
-                      {/* Badges  */}
+                      {/* Badges */}
                       <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-20">
-                        {/* Badge de catégorie avec icône */}
                         <motion.div
                           variants={badgeVariants}
                           className="bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg border border-[#D4AF37]/20"
@@ -248,7 +274,6 @@ const Products = () => {
                           </span>
                         </motion.div>
 
-                        {/* Badge de prix */}
                         <motion.div
                           variants={badgeVariants}
                           className="bg-[#D4AF37] text-black px-3 py-1.5 rounded-full shadow-lg"
@@ -257,7 +282,7 @@ const Products = () => {
                         </motion.div>
                       </div>
 
-                      {/* Actions rapides au hover */}
+                      {/* Actions rapides */}
                       <motion.div
                         variants={quickActionVariants}
                         className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 flex items-center space-x-2"
@@ -279,15 +304,12 @@ const Products = () => {
 
                     {/* Informations produit */}
                     <div className="relative p-5 bg-white">
-                      {/* Ligne décorative */}
                       <div className="absolute top-0 left-5 right-5 h-px bg-linear-to-r from-transparent via-[#D4AF37]/20 to-transparent"></div>
                       
-                      {/* Description */}
                       <p className="text-gray-600 text-xs mb-3 leading-relaxed line-clamp-2">
                         {product.description}
                       </p>
                       
-                      {/* Tags supplémentaires */}
                       <div className="flex items-center space-x-2 mb-3">
                         <span className="px-2 py-0.5 bg-gray-100 rounded-full text-[8px] text-gray-600 uppercase tracking-wider">
                           Nouveau
@@ -297,14 +319,11 @@ const Products = () => {
                         </span>
                       </div>
                       
-                      {/* Métriques */}
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-1">
-                          <Star size={10} className="text-[#D4AF37] fill-current" />
-                          <Star size={10} className="text-[#D4AF37] fill-current" />
-                          <Star size={10} className="text-[#D4AF37] fill-current" />
-                          <Star size={10} className="text-[#D4AF37] fill-current" />
-                          <Star size={10} className="text-[#D4AF37] fill-current" />
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} size={10} className="text-[#D4AF37] fill-current" />
+                          ))}
                           <span className="text-[10px] text-gray-500 ml-1">(24)</span>
                         </div>
                         <span className="text-[10px] text-gray-400">
@@ -312,9 +331,8 @@ const Products = () => {
                         </span>
                       </div>
 
-                      {/* Lien Découvrir */}
                       <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
-                        <span className="text-[10px] text-gray-400">Délai de livraison: 3-5 jours</span>
+                        <span className="text-[10px] text-gray-400">Délai: 3-5 jours</span>
                         <motion.div
                           initial={{ x: 0 }}
                           whileHover={{ x: 5 }}
@@ -327,8 +345,8 @@ const Products = () => {
                       </div>
                     </div>
                   </div>
-                </Link>
-              </motion.div>
+                </motion.div>
+              </div>
             );
           })}
         </motion.div>
@@ -372,7 +390,7 @@ const Products = () => {
           </div>
         </motion.div>
 
-        {/* CTA élégant */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView="visible"
@@ -398,6 +416,103 @@ const Products = () => {
           </Link>
         </motion.div>
       </div>
+
+      {/* MODAL AVEC SCROLL POUR LES DÉTAILS PRODUIT */}
+      <AnimatePresence>
+        {selectedProduct && productsDetailData[selectedProduct] && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4 md:p-8"
+            onClick={() => setSelectedProduct(null)}
+          >
+            <motion.div
+              variants={modalVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="relative bg-white rounded-3xl shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* En-tête fixe avec le bouton de fermeture */}
+              <div className="sticky top-0 z-10 bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between">
+                <h2 className="text-xl font-light text-gray-900">
+                  <span className="font-bold">{productsDetailData[selectedProduct].name}</span> - Détails du produit
+                </h2>
+                <button
+                  onClick={() => setSelectedProduct(null)}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+
+              {/* Zone de contenu avec scroll */}
+              <div className="overflow-y-auto p-6 md:p-8">
+                <ProductDetail
+                  product={productsDetailData[selectedProduct]}
+                  onClose={() => setSelectedProduct(null)}
+                  selectedColor={selectedColor}
+                  setSelectedColor={setSelectedColor}
+                  selectedSize={selectedSize}
+                  setSelectedSize={setSelectedSize}
+                  quantity={quantity}
+                  setQuantity={setQuantity}
+                  setShowSizeGuide={setShowSizeGuide}
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Modal Guide des tailles */}
+      <AnimatePresence>
+        {showSizeGuide && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-60 bg-black/50 flex items-center justify-center p-4"
+            onClick={() => setShowSizeGuide(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-2xl max-w-lg w-full p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-medium text-gray-900">Guide des tailles</h3>
+                <button
+                  onClick={() => setShowSizeGuide(false)}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+              <table className="w-full text-sm">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="p-2 text-left">Taille</th>
+                    <th className="p-2 text-left">Poitrine (cm)</th>
+                    <th className="p-2 text-left">Longueur (cm)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td className="p-2">XS</td><td>84-88</td><td>68</td></tr>
+                  <tr><td className="p-2">S</td><td>88-92</td><td>70</td></tr>
+                  <tr><td className="p-2">M</td><td>92-96</td><td>72</td></tr>
+                  <tr><td className="p-2">L</td><td>96-100</td><td>74</td></tr>
+                  <tr><td className="p-2">XL</td><td>100-104</td><td>76</td></tr>
+                </tbody>
+              </table>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

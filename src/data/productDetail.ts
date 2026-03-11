@@ -1,6 +1,6 @@
 import type { ProductDetail } from '../types/product';
 
-export const productsData: { [key: string]: ProductDetail } = {
+export const productsDetailData: { [key: string]: ProductDetail } = {
   'tshirts': {
     id: 1,
     name: "T-SHIRT CLASSIC",

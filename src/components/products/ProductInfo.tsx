@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ShoppingBag, } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
 import { type ProductSize } from '../../types/product';
 
 interface ProductInfoProps {
@@ -17,6 +16,10 @@ interface ProductInfoProps {
     care: string;
     origin: string;
   };
+  selectedSize: string;
+  setSelectedSize: (size: string) => void;
+  quantity: number;
+  setQuantity: (quantity: number) => void;
 }
 
 const ProductInfo = ({
@@ -25,24 +28,20 @@ const ProductInfo = ({
   price,
   description,
   sizes,
+  selectedSize,
+  setSelectedSize,
+  quantity,
+  setQuantity,
 }: ProductInfoProps) => {
-  const [selectedSize, setSelectedSize] = useState<string>('');
-  const [quantity, setQuantity] = useState(1);
-  const [isFavorite, setIsFavorite] = useState(false);
 
   return (
-    <div className="h-150 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+    <div className="overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
       <div className="space-y-6">
         {/* Catégorie et badge */}
         <div className="flex items-center justify-between">
           <span className="text-sm uppercase tracking-wider text-[#D4AF37] font-light bg-[#D4AF37]/5 px-3 py-1 rounded-full">
             {category}
           </span>
-          <button
-            onClick={() => setIsFavorite(!isFavorite)}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-          >
-          </button>
         </div>
 
         {/* Titre et prix */}
@@ -66,7 +65,7 @@ const ProductInfo = ({
           {description}
         </p>
 
-        {/* Sélecteur de taille avec guide */}
+        {/* Sélecteur de taille */}
         <div>
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-sm font-medium text-gray-900">

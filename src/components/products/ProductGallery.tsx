@@ -7,13 +7,19 @@ interface ProductGalleryProps {
     images: string[];
     colors: ProductColor[];
     productName: string;
+    selectedColor?: string;
+    setSelectedColor?: (color: string) => void;
 }
 
-const ProductGallery = ({ images, colors, productName }: ProductGalleryProps) => {
+const ProductGallery = ({ 
+    images, 
+    colors, 
+    productName, 
+    selectedColor = colors[0]?.id || '',
+    setSelectedColor = () => {} 
+}: ProductGalleryProps) => {
     const [selectedImage, setSelectedImage] = useState(0);
-    const [selectedColor, setSelectedColor] = useState<string>(colors[0]?.id || '');
     const [lightboxOpen, setLightboxOpen] = useState(false);
-    const [isZoomed] = useState(false);
 
     const nextImage = () => {
         setSelectedImage((prev) => (prev + 1) % images.length);
@@ -25,8 +31,8 @@ const ProductGallery = ({ images, colors, productName }: ProductGalleryProps) =>
 
     return (
         <>
-            {/* Galerie principale - Hauteur fixe pour éviter le scroll */}
-            <div className="relative h-90 lg:h-100 w-full group">
+            {/* Galerie principale */}
+            <div className="relative h-100 lg:h-125 w-full group">
                 {/* Image principale */}
                 <div className="relative h-full rounded-2xl lg:rounded-3xl overflow-hidden bg-zinc-100 shadow-xl">
                     <motion.img
@@ -38,10 +44,6 @@ const ProductGallery = ({ images, colors, productName }: ProductGalleryProps) =>
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.3 }}
                         onClick={() => setLightboxOpen(true)}
-                        style={{
-                            scale: isZoomed ? 1.5 : 1,
-                            transition: 'scale 0.3s ease'
-                        }}
                     />
 
                     {/* Bouton plein écran */}
@@ -78,7 +80,7 @@ const ProductGallery = ({ images, colors, productName }: ProductGalleryProps) =>
             </div>
 
             {/* Sélecteur de couleurs */}
-            {colors.length > 0 && (
+            {colors.length > 0 && setSelectedColor && (
                 <div className="mt-4">
                     <div className="flex gap-3">
                         {colors.map((color) => (
@@ -87,7 +89,7 @@ const ProductGallery = ({ images, colors, productName }: ProductGalleryProps) =>
                                 onClick={() => {
                                     setSelectedColor(color.id);
                                 }}
-                                className={`group relative`}
+                                className="group relative"
                                 title={color.name}
                             >
                                 <div

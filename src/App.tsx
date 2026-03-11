@@ -12,9 +12,6 @@ import About from './components/sections/home/About';
 import Products from './components/sections/home/Products';
 import Contact from './components/sections/home/Contact';
 
-// Page components
-import ProductDetail from './pages/ProductDetail';
-
 // Styles
 import './App.css';
 
@@ -26,19 +23,12 @@ function App() {
         <Header />
 
         <Routes>
-          {/* Page d'accueil */}
+          {/* Page d'accueil - Une seule route */}
           <Route path="/" element={
             <>
-              {/* Hero Section */}
               <Hero />
-
-              {/* About Section */}
               <About />
-
-              {/* Categories Section */}
               <Products />
-
-              {/* Contact section */}
               <Contact />
 
               {/* Promo Banner */}
@@ -130,9 +120,6 @@ function App() {
               </section>
             </>
           } />
-
-          {/* Page de détail produit */}
-          <Route path="/product/:productId" element={<ProductDetail />} />
         </Routes>
 
         {/* Footer */}
