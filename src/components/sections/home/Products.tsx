@@ -6,9 +6,14 @@ import {
   Sparkles, 
   Eye,
   Shirt,
-  ShoppingBag
+  ShoppingBag,
+  Share2,
+  Clock,
+  Shield,
+  Truck
 } from 'lucide-react';
 import { productsData } from '../../../data/products';
+import { Link } from 'react-router-dom';
 
 const Products = () => {
   const productIcons: { [key: string]: React.ElementType } = {
@@ -19,14 +24,30 @@ const Products = () => {
     'default': Sparkles
   };
 
-  // Animation variants
+  // Fonction pour obtenir l'ID du produit
+  const getProductId = (productName: string): string => {
+    switch(productName) {
+      case 'T-SHIRTS':
+        return 'tshirts';
+      case 'HOODIES':
+        return 'hoodies';
+      case 'SWEATS':
+        return 'sweats';
+      case 'ACCESSOIRES':
+        return 'accessories';
+      default:
+        return 'tshirts';
+    }
+  };
+
+  // Animation variants améliorés
   const sectionVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
       },
     },
   };
@@ -36,7 +57,7 @@ const Products = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] },
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
@@ -46,15 +67,15 @@ const Products = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.7,
-        delay: i * 0.15,
-        ease: [0.25, 0.1, 0.25, 1],
+        duration: 0.6,
+        delay: i * 0.1,
+        ease: [0.16, 1, 0.3, 1],
       },
     }),
     hover: {
-      y: -12,
+      y: -8,
       transition: {
-        duration: 0.4,
+        duration: 0.3,
         ease: "easeOut",
       },
     },
@@ -62,10 +83,10 @@ const Products = () => {
 
   const imageVariants: Variants = {
     hover: {
-      scale: 1.1,
+      scale: 1.08,
       transition: {
-        duration: 0.8,
-        ease: [0.25, 0.1, 0.25, 1],
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1],
       },
     },
   };
@@ -74,7 +95,7 @@ const Products = () => {
     hidden: { opacity: 0 },
     hover: {
       opacity: 1,
-      transition: { duration: 0.4 },
+      transition: { duration: 0.3 },
     },
   };
 
@@ -86,241 +107,295 @@ const Products = () => {
       transition: {
         type: "spring",
         stiffness: 300,
-        damping: 15,
+        damping: 20,
       },
     },
   };
 
+  const quickActionVariants: Variants = {
+    hidden: { opacity: 0, y: 10 },
+    hover: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.2 },
+    },
+  };
 
   return (
-    <section id="products" className="relative pt-16 md:pt-24 pb-12 md:pb-12 bg-white overflow-hidden">
-      {/* Éléments décoratifs de fond sophistiqués */}
+    <section id="products" className="relative py-8 md:py-8 bg-white overflow-hidden">
+      {/* Éléments décoratifs de fond premium */}
       <div className="absolute inset-0">
-        {/* Cercles lumineux dorés */}
-        <div className="absolute top-40 -left-20 w-80 h-80 bg-linear-to-br from-[#D4AF37]/10 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-40 -right-20 w-80 h-80 bg-linear-to-tl from-[#D4AF37]/10 to-transparent rounded-full blur-3xl"></div>
+        {/* Grands cercles lumineux */}
+        <div className="absolute top-0 -left-40 w-125 h-125 bg-linear-to-br from-[#D4AF37]/5 via-transparent to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 -right-40 w-150 h-150 bg-linear-to-tl from-[#D4AF37]/5 via-transparent to-transparent rounded-full blur-3xl"></div>
         
-        {/* Lignes de lumière */}
-        <div className="absolute top-60 left-0 w-full h-px bg-linear-to-r from-transparent via-[#D4AF37]/20 to-transparent"></div>
-        <div className="absolute bottom-60 left-0 w-full h-px bg-linear-to-r from-transparent via-[#D4AF37]/20 to-transparent"></div>
+        {/* Lignes de lumière croisées */}
+        <div className="absolute top-1/3 left-0 w-full h-px bg-linear-to-r from-transparent via-[#D4AF37]/10 to-transparent"></div>
+        <div className="absolute bottom-1/3 left-0 w-full h-px bg-linear-to-r from-transparent via-[#D4AF37]/10 to-transparent"></div>
+        <div className="absolute top-0 left-1/3 w-px h-full bg-linear-to-b from-transparent via-[#D4AF37]/10 to-transparent"></div>
+        <div className="absolute top-0 right-1/3 w-px h-full bg-linear-to-b from-transparent via-[#D4AF37]/10 to-transparent"></div>
         
-        {/* Motif de points élégant */}
+        {/* Motif de points sophistiqué */}
         <div className="absolute inset-0 opacity-[0.02]" 
           style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, #D4AF37 1px, transparent 0)',
-            backgroundSize: '40px 40px'
+            backgroundImage: 'radial-gradient(circle at 1px 1px, #D4AF37 1px, transparent 0)',
+            backgroundSize: '30px 30px'
           }}
         />
         
         {/* Motif de lignes fines */}
         <div className="absolute inset-0 opacity-[0.01]"
           style={{
-            backgroundImage: 'repeating-linear-gradient(45deg, #D4AF37 0px, #D4AF37 1px, transparent 1px, transparent 30px)',
+            backgroundImage: 'repeating-linear-gradient(45deg, #D4AF37 0px, #D4AF37 1px, transparent 1px, transparent 40px)',
           }}
         />
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        {/* En-tête de section ultra-premium */}
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
+        {/* En-tête de section */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={sectionVariants}
-          className="text-center mb-20"
+          className="text-center mb-16 md:mb-20"
         >
           <motion.div variants={titleVariants} className="inline-block">
-            {/* Titre principal avec effet de relief */}
-            <h2 className="text-6xl md:text-7xl lg:text-8xl font-light text-gray-900 mb-6 relative">
-              <span className="relative inline-block">
-                <span className="absolute -inset-2 bg-[#D4AF37]/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                <span className="relative">
-                  <span className="font-black bg-linear-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                    NOS PRODUITS
-                  </span>
+
+            {/* Titre principal avec effet de profondeur */}
+            <h2 className="relative">
+              <span className="text-6xl md:text-7xl lg:text-8xl font-light text-gray-900 block leading-[1.1]">
+                <span className="font-black bg-linear-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent">
+                  NOS PRODUITS
                 </span>
               </span>
               <motion.span 
-                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-linear-to-r from-transparent via-[#D4AF37] to-transparent"
+                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-linear-to-r from-transparent via-[#D4AF37] to-transparent"
                 initial={{ scaleX: 0, opacity: 0 }}
                 whileInView={{ scaleX: 1, opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
               />
             </h2>
 
-            {/* Sous-titre élégant avec effet de fondu */}
+            {/* Sous-titre élégant */}
             <motion.p 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="text-gray-500 max-w-2xl mx-auto text-base md:text-lg leading-relaxed font-light italic"
+              className="text-gray-500 max-w-2xl mx-auto text-base md:text-lg leading-relaxed font-light mt-8"
             >
-              "{productsData.subtitle}"
+              {productsData.subtitle}
             </motion.p>
-
-            {/* Séparateur décoratif animé */}
-            <motion.div 
-              initial={{ width: 0 }}
-              whileInView={{ width: 100 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-              className="h-px bg-linear-to-r from-transparent via-[#D4AF37]/30 to-transparent mx-auto mt-8"
-            />
           </motion.div>
         </motion.div>
 
-        {/* Grille des produits premium */}
+        {/* Grille des produits */}
         <motion.div
-           initial="hidden"
-           whileInView="visible"
-           viewport={{ once: true, margin: "-50px" }}
-           variants={sectionVariants}
-           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={sectionVariants}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto"
         >
           {productsData.categories.map((product, index) => {
             const ProductIcon = productIcons[product.name] || Sparkles;
+            const productId = getProductId(product.name);
             
             return (
-              <motion.a
+              <motion.div
                 key={product.id}
-                href={product.link}
-                custom={index}
                 variants={cardVariants}
+                custom={index}
                 whileHover="hover"
-                className="group relative block"
+                className="group"
               >
-                {/* Conteneur de la carte avec effet de profondeur */}
-                <div className="relative bg-white rounded-3xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-700">
-                  {/* Conteneur de l'image avec cadre élégant */}
-                  <div className="relative overflow-hidden">
-                    <motion.div
-                      variants={imageVariants}
-                      className="aspect-4/5 overflow-hidden"
-                    >
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </motion.div>
-
-                    {/* Overlay premium avec gradient sophistiqué */}
-                    <motion.div
-                      variants={overlayVariants}
-                      className="absolute inset-0 bg-linear-to-t from-gray-400/10 via-gray-400/10 to-transparent"
-                    />
-
-                    {/* Badge du produit avec animation - avec icône spécifique */}
-                    <motion.div
-                      variants={badgeVariants}
-                      className="absolute top-4 left-4 z-20"
-                    >
-                      <div className="bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg border border-[#D4AF37]/20 group-hover:border-[#D4AF37]/40 transition-colors">
-                         <span className="text-xs font-bold text-gray-900 flex items-center space-x-1.5">
-                          <ProductIcon size={12} className="text-[#D4AF37]" />
-                          <span>{product.name}</span>
-                         </span>
-                      </div>
-                    </motion.div>
-
-                    {/* Badge de prix */}
-                    <motion.div
-                      variants={badgeVariants}
-                      className="absolute top-4 right-4 z-20"
-                    >
-                      <div className="bg-[#D4AF37] text-black px-2.5 py-1 rounded-full shadow-lg">
-                        <span className="text-[10px] font-bold">{product.price}</span>
-                      </div>
-                    </motion.div>
-
-                    {/* Bouton de visualisation au hover */}
-                    <motion.div
-                      variants={overlayVariants}
-                      className="absolute inset-0 flex items-center justify-center z-20"
-                    >
+                <Link
+                  to={`/product/${productId}`}
+                  className="block"
+                >
+                  {/* Carte produit avec design */}
+                  <div className="relative bg-white rounded-3xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-500">
+                    
+                    {/* Image container avec overlay */}
+                    <div className="relative overflow-hidden">
                       <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="bg-white/20 backdrop-blur-md rounded-full p-3 border-2 border-white/30 group-hover:border-white/50 transition-all"
+                        variants={imageVariants}
+                        className="aspect-4/5 overflow-hidden"
                       >
-                        <Eye size={20} className="text-white" />
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-full object-cover"
+                        />
                       </motion.div>
-                    </motion.div>
-                  </div>
 
-                  {/* Contenu de la carte avec séparation élégante */}
-                  <div className="relative p-5 bg-white">
-                    {/* Ligne décorative */}
-                    <div className="absolute top-0 left-5 right-5 h-px bg-linear-to-r from-transparent via-[#D4AF37]/20 to-transparent"></div>
-                    
-                    {/* Description */}
-                    <p className="text-gray-600 text-xs mb-3 leading-relaxed line-clamp-2">
-                      {product.description}
-                    </p>
-                    
-                    {/* Compteur de pièces et lien */}
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] text-gray-400">
-                        {product.count} modèles
-                      </span>
+                      {/* Overlay au hover */}
                       <motion.div
-                        initial={{ x: 0 }}
-                        whileHover={{ x: 5 }}
-                        transition={{ type: "spring", stiffness: 400 }}
-                        className="flex items-center space-x-1 text-[#D4AF37]"
+                        variants={overlayVariants}
+                        className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent"
+                      />
+
+                      {/* Badges  */}
+                      <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-20">
+                        {/* Badge de catégorie avec icône */}
+                        <motion.div
+                          variants={badgeVariants}
+                          className="bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg border border-[#D4AF37]/20"
+                        >
+                          <span className="text-xs font-bold text-gray-900 flex items-center space-x-1.5">
+                            <ProductIcon size={12} className="text-[#D4AF37]" />
+                            <span>{product.name}</span>
+                          </span>
+                        </motion.div>
+
+                        {/* Badge de prix */}
+                        <motion.div
+                          variants={badgeVariants}
+                          className="bg-[#D4AF37] text-black px-3 py-1.5 rounded-full shadow-lg"
+                        >
+                          <span className="text-xs font-bold">{product.price}</span>
+                        </motion.div>
+                      </div>
+
+                      {/* Actions rapides au hover */}
+                      <motion.div
+                        variants={quickActionVariants}
+                        className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 flex items-center space-x-2"
                       >
-                        <span className="text-xs font-medium">Découvrir</span>
-                        <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                        <motion.div
+                          whileHover={{ scale: 1.1 }}
+                          className="bg-white/90 backdrop-blur-md rounded-full p-2 shadow-lg cursor-pointer hover:bg-[#D4AF37] transition-colors"
+                        >
+                          <Eye size={18} className="text-gray-700 hover:text-white transition-colors" />
+                        </motion.div>
+                        <motion.div
+                          whileHover={{ scale: 1.1 }}
+                          className="bg-white/90 backdrop-blur-md rounded-full p-2 shadow-lg cursor-pointer hover:bg-[#D4AF37] transition-colors"
+                        >
+                          <Share2 size={18} className="text-gray-700 hover:text-white transition-colors" />
+                        </motion.div>
                       </motion.div>
                     </div>
+
+                    {/* Informations produit */}
+                    <div className="relative p-5 bg-white">
+                      {/* Ligne décorative */}
+                      <div className="absolute top-0 left-5 right-5 h-px bg-linear-to-r from-transparent via-[#D4AF37]/20 to-transparent"></div>
+                      
+                      {/* Description */}
+                      <p className="text-gray-600 text-xs mb-3 leading-relaxed line-clamp-2">
+                        {product.description}
+                      </p>
+                      
+                      {/* Tags supplémentaires */}
+                      <div className="flex items-center space-x-2 mb-3">
+                        <span className="px-2 py-0.5 bg-gray-100 rounded-full text-[8px] text-gray-600 uppercase tracking-wider">
+                          Nouveau
+                        </span>
+                        <span className="px-2 py-0.5 bg-gray-100 rounded-full text-[8px] text-gray-600 uppercase tracking-wider">
+                          En stock
+                        </span>
+                      </div>
+                      
+                      {/* Métriques */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-1">
+                          <Star size={10} className="text-[#D4AF37] fill-current" />
+                          <Star size={10} className="text-[#D4AF37] fill-current" />
+                          <Star size={10} className="text-[#D4AF37] fill-current" />
+                          <Star size={10} className="text-[#D4AF37] fill-current" />
+                          <Star size={10} className="text-[#D4AF37] fill-current" />
+                          <span className="text-[10px] text-gray-500 ml-1">(24)</span>
+                        </div>
+                        <span className="text-[10px] text-gray-400">
+                          {product.count} modèles
+                        </span>
+                      </div>
+
+                      {/* Lien Découvrir */}
+                      <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
+                        <span className="text-[10px] text-gray-400">Délai de livraison: 3-5 jours</span>
+                        <motion.div
+                          initial={{ x: 0 }}
+                          whileHover={{ x: 5 }}
+                          transition={{ type: "spring", stiffness: 400 }}
+                          className="flex items-center space-x-1 text-[#D4AF37]"
+                        >
+                          <span className="text-xs font-medium">Découvrir</span>
+                          <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                        </motion.div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </motion.a>
+                </Link>
+              </motion.div>
             );
           })}
         </motion.div>
 
-        {/* CTA élégant avec animation sophistiquée */}
+        {/* Section des avantages */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mt-20"
+        >
+          <div className="flex items-center space-x-3 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-100">
+            <div className="w-10 h-10 rounded-full bg-[#D4AF37]/10 flex items-center justify-center">
+              <Truck size={18} className="text-[#D4AF37]" />
+            </div>
+            <div>
+              <h4 className="text-sm font-medium text-gray-900">Livraison rapide</h4>
+              <p className="text-xs text-gray-500">3-5 jours ouvrés</p>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-3 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-100">
+            <div className="w-10 h-10 rounded-full bg-[#D4AF37]/10 flex items-center justify-center">
+              <Shield size={18} className="text-[#D4AF37]" />
+            </div>
+            <div>
+              <h4 className="text-sm font-medium text-gray-900">Paiement sécurisé</h4>
+              <p className="text-xs text-gray-500">CB, PayPal, Apple Pay</p>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-3 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-100">
+            <div className="w-10 h-10 rounded-full bg-[#D4AF37]/10 flex items-center justify-center">
+              <Clock size={18} className="text-[#D4AF37]" />
+            </div>
+            <div>
+              <h4 className="text-sm font-medium text-gray-900">Service client</h4>
+              <p className="text-xs text-gray-500">Réponse sous 24h</p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* CTA élégant */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView="visible"
           viewport={{ once: true }}
           transition={{ delay: 1, duration: 0.6 }}
-          className="text-center mt-20"
+          className="text-center mt-16"
         >
-          <a
-            href={productsData.cta.link}
-            className="group relative inline-flex items-center space-x-4 px-10 py-5 bg-black text-white font-medium overflow-hidden rounded-full transition-all duration-500 shadow-2xl hover:shadow-[#D4AF37]/20"
+          <Link
+            to="/gallery"
+            className="group relative inline-flex items-center space-x-3 px-8 py-4 bg-black text-white font-medium overflow-hidden rounded-full transition-all duration-500 shadow-xl hover:shadow-2xl"
           >
-            {/* Effet de fond avec particules */}
             <motion.div
               className="absolute inset-0 bg-linear-to-r from-[#D4AF37] to-[#C5A028]"
               initial={{ x: '-100%' }}
               whileHover={{ x: 0 }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             />
             
-            {/* Cercles décoratifs */}
-            <motion.div
-              className="absolute -top-10 -right-10 w-20 h-20 bg-white/20 rounded-full blur-xl"
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-            
-            {/* Contenu */}
-            <span className="relative z-10 text-sm uppercase tracking-wider group-hover:text-black transition-colors duration-300 flex items-center space-x-2">
-              <Star size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-              <span>{productsData.cta.text}</span>
-              <Star size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+            <span className="relative z-10 text-sm uppercase tracking-wider group-hover:text-black transition-colors duration-300">
+              {productsData.cta.text}
             </span>
-            <ArrowRight size={18} className="relative z-10 group-hover:text-black group-hover:translate-x-2 transition-all duration-300" />
-          </a>
+            <ArrowRight size={16} className="relative z-10 group-hover:text-black group-hover:translate-x-1 transition-all duration-300" />
+          </Link>
         </motion.div>
       </div>
     </section>
