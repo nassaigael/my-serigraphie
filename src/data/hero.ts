@@ -20,5 +20,4 @@ export const heroData = {
     { value: "10k+", label: "T-shirts imprimés" },
     { value: "500+", label: "Clients satisfaits" }
   ],
-  scrollText: "Découvrir"
 };
